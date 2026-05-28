@@ -50,10 +50,7 @@ Base URL: `http://localhost:3000`
 | --- | --- | --- |
 | GET | /health | Service health status |
 | GET | /todos | List all todos |
-| GET | /todos/:id | Get one todo |
 | POST | /todos | Create todo |
-| PUT | /todos/:id | Update todo |
-| DELETE | /todos/:id | Delete todo |
 
 ## Data Model
 
@@ -88,32 +85,6 @@ curl http://localhost:3000/todos
 
 Expected status: `200`
 
-### Get Todo By ID
-
-```bash
-curl http://localhost:3000/todos/<todo-id>
-```
-
-Expected status: `200` or `404`
-
-### Update Todo
-
-```bash
-curl -X PUT http://localhost:3000/todos/<todo-id> \
-  -H "Content-Type: application/json" \
-  -d '{"title":"Prepare final AI SDLC demo","status":"done"}'
-```
-
-Expected status: `200` or `404`
-
-### Delete Todo
-
-```bash
-curl -X DELETE http://localhost:3000/todos/<todo-id>
-```
-
-Expected status: `204` or `404`
-
 ## Error Model
 
 Errors return JSON:
@@ -130,7 +101,6 @@ Errors return JSON:
 Common codes:
 
 - `INVALID_REQUEST`
-- `TODO_NOT_FOUND`
 - `NOT_FOUND`
 
 ## Spec-Driven Workflow Layout
@@ -142,9 +112,11 @@ Common codes:
 
 ## Demo Prompt Sequence
 
-1. Run prompts from `prompts/Lesson_01_prompts.md`
-2. Run prompts from `prompts/Lesson_02_prompts.md`
-3. Run prompts from `prompts/Lesson_03_prompts.md`
+1. Run prompts from `prompts/Phase_01_prompts.md`
+2. Run prompts from `prompts/Phase_02_prompts.md`
+3. Run prompts from `prompts/Phase_03_prompts.md`
+4. Run prompts from `prompts/Phase_04_prompts.md`
+5. Run prompts from `prompts/Phase_05_prompts.md`
 
 This sequence demonstrates end-to-end SDLC flow from spec creation to implementation to release documentation.
 

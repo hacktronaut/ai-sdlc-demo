@@ -29,9 +29,9 @@ Phases are intentionally small so each can be completed and validated in one foc
 
 **Goal:** Support reading and editing an existing todo.
 
-- [x] Implement `GET /todos/:id`
-- [x] Implement `PUT /todos/:id`
-- [x] Add tests for not-found and update flows
+- [ ] Implement `GET /todos/:id`
+- [ ] Implement `PUT /todos/:id`
+- [ ] Add tests for not-found and update flows
 
 ---
 
@@ -39,9 +39,9 @@ Phases are intentionally small so each can be completed and validated in one foc
 
 **Goal:** Complete CRUD and harden API behavior.
 
-- [x] Implement `DELETE /todos/:id`
-- [x] Standardize error responses (`INVALID_REQUEST`, `TODO_NOT_FOUND`)
-- [x] Add tests for delete behavior
+- [ ] Implement `DELETE /todos/:id`
+- [ ] Standardize error responses (`INVALID_REQUEST`, `TODO_NOT_FOUND`)
+- [ ] Add tests for delete behavior
 
 ---
 
@@ -49,7 +49,7 @@ Phases are intentionally small so each can be completed and validated in one foc
 
 **Goal:** Produce delivery artifacts expected in a real SDLC process.
 
-- [x] Add README with setup, run, test, and API examples
-- [x] Add local skills for feature spec, changelog, and docs template
-- [x] Add prompt pack for repeatable AI demo
+- [ ] Add README with setup, run, test, and API examples
+- [ ] Add local skills for feature spec, changelog, and docs template
+- [ ] Add prompt pack for repeatable AI demo
 - [ ] Generate CHANGELOG from git commits after initial commit history exists
