@@ -3,8 +3,8 @@
 ## Runtime and Language
 
 - Node.js 20+
-- TypeScript 5.x
-- Express 4.x
+- Express 4
+- TypeScript 5
 
 ## Tooling
 
@@ -21,11 +21,12 @@
 
 ## Constraints
 
-- Do not add new dependencies without approval
-- Keep API contracts stable once documented
-- Prefer small, testable units and incremental changes
+- Scope is limited to the current Todo API behavior described in README
+- Keep implementation simple, explicit, and test-driven
+- Preserve stable API contracts once documented
+- Do not introduce persistence or auth in this phase
 
-## Future Extensions (Out of Scope for Core Demo)
+## Out of Scope for This Phase
 
 - Persistent storage (SQLite/PostgreSQL)
 - OpenAPI specification generation

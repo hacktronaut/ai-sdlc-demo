@@ -1,32 +1,29 @@
 # AI SDLC Demo - Spec-Driven Todo API
 
-This repository demonstrates a practical Spec-Driven Development (SDD) workflow using AI to build a small Todo API with Node.js, Express, and TypeScript.
+This repository demonstrates a practical Spec-Driven Development workflow using AI to build a small Todo API with Node.js, Express, and TypeScript.
 
-## Why This Demo
+## Project Overview
 
-The objective is to show that AI-assisted delivery is stronger when it follows SDLC discipline:
+The current implementation delivers a single in-memory Todo API with full CRUD behavior and standardized JSON error responses.
+
+## Why Spec-Driven Workflow
+
+This demo shows that AI-assisted delivery improves when engineering discipline is explicit:
 
 - Define mission and constraints first
 - Plan implementation in tiny phases
-- Implement from specs, not ad-hoc prompts
-- Validate behavior with tests and checks
-- Produce changelog and documentation as release artifacts
+- Implement from written specs instead of ad-hoc prompts
+- Validate with automated checks
+- Publish release artifacts such as README and CHANGELOG
 
-## Tech Stack
-
-- Node.js 20+
-- Express 4
-- TypeScript 5
-- Vitest + Supertest
-
-## Quick Start
+## Setup and Run
 
 ```bash
 npm install
 npm run dev
 ```
 
-Server starts on `http://localhost:3000`.
+Default server URL: http://localhost:3000
 
 Health check:
 
@@ -34,7 +31,7 @@ Health check:
 curl http://localhost:3000/health
 ```
 
-## Validation Commands
+## Test and Typecheck Commands
 
 ```bash
 npm test
@@ -42,35 +39,34 @@ npm run typecheck
 npm run build
 ```
 
-## API Overview
+## API Endpoints
 
-Base URL: `http://localhost:3000`
+Base URL: http://localhost:3000
 
 | Method | Path | Description |
 | --- | --- | --- |
 | GET | /health | Service health status |
 | GET | /todos | List all todos |
-| GET | /todos/:id | Get one todo |
-| POST | /todos | Create todo |
-| PUT | /todos/:id | Update todo |
-| DELETE | /todos/:id | Delete todo |
+| GET | /todos/:id | Get one todo by id |
+| POST | /todos | Create a todo |
+| PUT | /todos/:id | Update a todo |
+| DELETE | /todos/:id | Delete a todo |
 
-## Data Model
+## Request and Response Examples
+
+### GET /health
+
+```bash
+curl http://localhost:3000/health
+```
 
 ```json
 {
-  "id": "uuid",
-  "title": "string",
-  "description": "string | undefined",
-  "status": "pending | done",
-  "createdAt": "ISO datetime",
-  "updatedAt": "ISO datetime"
+  "status": "ok"
 }
 ```
 
-## Endpoint Examples
-
-### Create Todo
+### POST /todos
 
 ```bash
 curl -X POST http://localhost:3000/todos \
@@ -78,25 +74,68 @@ curl -X POST http://localhost:3000/todos \
   -d '{"title":"Prepare AI SDLC demo","description":"Record walkthrough"}'
 ```
 
-Expected status: `201`
+Status: 201
 
-### List Todos
+```json
+{
+  "data": {
+    "id": "uuid",
+    "title": "Prepare AI SDLC demo",
+    "description": "Record walkthrough",
+    "status": "pending",
+    "createdAt": "2026-05-28T00:00:00.000Z",
+    "updatedAt": "2026-05-28T00:00:00.000Z"
+  }
+}
+```
+
+### GET /todos
 
 ```bash
 curl http://localhost:3000/todos
 ```
 
-Expected status: `200`
+Status: 200
 
-### Get Todo By ID
+```json
+{
+  "data": [
+    {
+      "id": "uuid",
+      "title": "Prepare AI SDLC demo",
+      "description": "Record walkthrough",
+      "status": "pending",
+      "createdAt": "2026-05-28T00:00:00.000Z",
+      "updatedAt": "2026-05-28T00:00:00.000Z"
+    }
+  ]
+}
+```
+
+### GET /todos/:id
 
 ```bash
 curl http://localhost:3000/todos/<todo-id>
 ```
 
-Expected status: `200` or `404`
+Status: 200 or 404
 
-### Update Todo
+Success response:
+
+```json
+{
+  "data": {
+    "id": "uuid",
+    "title": "Prepare AI SDLC demo",
+    "description": "Record walkthrough",
+    "status": "pending",
+    "createdAt": "2026-05-28T00:00:00.000Z",
+    "updatedAt": "2026-05-28T00:00:00.000Z"
+  }
+}
+```
+
+### PUT /todos/:id
 
 ```bash
 curl -X PUT http://localhost:3000/todos/<todo-id> \
@@ -104,19 +143,36 @@ curl -X PUT http://localhost:3000/todos/<todo-id> \
   -d '{"title":"Prepare final AI SDLC demo","status":"done"}'
 ```
 
-Expected status: `200` or `404`
+Status: 200 or 404
 
-### Delete Todo
+Success response:
+
+```json
+{
+  "data": {
+    "id": "uuid",
+    "title": "Prepare final AI SDLC demo",
+    "description": "Record walkthrough",
+    "status": "done",
+    "createdAt": "2026-05-28T00:00:00.000Z",
+    "updatedAt": "2026-05-28T00:10:00.000Z"
+  }
+}
+```
+
+### DELETE /todos/:id
 
 ```bash
 curl -X DELETE http://localhost:3000/todos/<todo-id>
 ```
 
-Expected status: `204` or `404`
+Status: 204 or 404
+
+Success response body: empty
 
 ## Error Model
 
-Errors return JSON:
+Errors return JSON in this shape:
 
 ```json
 {
@@ -127,29 +183,23 @@ Errors return JSON:
 }
 ```
 
-Common codes:
+Common error codes:
 
-- `INVALID_REQUEST`
-- `TODO_NOT_FOUND`
-- `NOT_FOUND`
+- INVALID_REQUEST
+- TODO_NOT_FOUND
+- NOT_FOUND
 
-## Spec-Driven Workflow Layout
+## Step-by-Step Demo Prompt Sequence
 
-- Constitution and roadmap: `specs/`
-- Local skills (Copilot-first): `.github/skills/`
-- Legacy-compatible skills mirror: `.claude/skills/`
-- Demo prompt packs: `prompts/`
+1. Run prompts in [prompts/Lesson_01_prompts.md](prompts/Lesson_01_prompts.md)
+2. Run prompts in [prompts/Lesson_02_prompts.md](prompts/Lesson_02_prompts.md)
+3. Run prompts in [prompts/Lesson_03_prompts.md](prompts/Lesson_03_prompts.md)
 
-## Demo Prompt Sequence
+## Validation Checklist
 
-1. Run prompts from `prompts/Lesson_01_prompts.md`
-2. Run prompts from `prompts/Lesson_02_prompts.md`
-3. Run prompts from `prompts/Lesson_03_prompts.md`
-
-This sequence demonstrates end-to-end SDLC flow from spec creation to implementation to release documentation.
-
-## Current Implementation Notes
-
-- Storage is in-memory for speed and clarity in demos
-- API behavior is covered by integration tests in `tests/todo.api.test.ts`
-- Changelog generation requires commit history to exist
+- npm test passes
+- npm run typecheck passes
+- npm run build passes
+- CRUD routes respond with documented status codes
+- Error responses match documented error model
+- CHANGELOG is updated from commit history

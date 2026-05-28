@@ -1,6 +1,8 @@
 # Roadmap
 
-Phases are intentionally small so each can be completed and validated in one focused AI iteration.
+Phases are intentionally tiny so each can be implemented and validated in one focused AI iteration.
+
+Scope: current in-memory Todo API only.
 
 ---
 
@@ -11,6 +13,7 @@ Phases are intentionally small so each can be completed and validated in one foc
 - [x] Initialize Node.js + TypeScript + Express project
 - [x] Add `/health` route
 - [x] Add test runner and first API test
+- [x] Run `npm test`, `npm run typecheck`, and `npm run build`
 
 ---
 
@@ -22,6 +25,7 @@ Phases are intentionally small so each can be completed and validated in one foc
 - [x] Implement `POST /todos`
 - [x] Implement `GET /todos`
 - [x] Add tests for create/list and payload validation
+- [x] Re-run validation commands
 
 ---
 
@@ -32,6 +36,7 @@ Phases are intentionally small so each can be completed and validated in one foc
 - [x] Implement `GET /todos/:id`
 - [x] Implement `PUT /todos/:id`
 - [x] Add tests for not-found and update flows
+- [x] Re-run validation commands
 
 ---
 
@@ -42,6 +47,7 @@ Phases are intentionally small so each can be completed and validated in one foc
 - [x] Implement `DELETE /todos/:id`
 - [x] Standardize error responses (`INVALID_REQUEST`, `TODO_NOT_FOUND`)
 - [x] Add tests for delete behavior
+- [x] Re-run validation commands
 
 ---
 
@@ -52,4 +58,12 @@ Phases are intentionally small so each can be completed and validated in one foc
 - [x] Add README with setup, run, test, and API examples
 - [x] Add local skills for feature spec, changelog, and docs template
 - [x] Add prompt pack for repeatable AI demo
-- [ ] Generate CHANGELOG from git commits after initial commit history exists
+- [x] Generate CHANGELOG from git commits after initial commit history exists
+
+---
+
+## Explicitly Deferred (Not in Lesson 01 Scope)
+
+- OpenAPI export for the API
+- Persistent storage (SQLite/PostgreSQL)
+- Authentication for multi-user todos
