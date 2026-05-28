@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { CreateTodoInput, Todo } from "../types/todo";
+import { CreateTodoInput, Todo, UpdateTodoInput } from "../types/todo";
 
 export class TodoStore {
   private readonly todos = new Map<string, Todo>();
@@ -21,6 +21,26 @@ export class TodoStore {
 
     this.todos.set(todo.id, todo);
     return todo;
+  }
+
+  getById(id: string): Todo | undefined {
+    return this.todos.get(id);
+  }
+
+  update(id: string, input: UpdateTodoInput): Todo | undefined {
+    const existing = this.todos.get(id);
+    if (!existing) {
+      return undefined;
+    }
+
+    const updated: Todo = {
+      ...existing,
+      ...input,
+      updatedAt: new Date().toISOString()
+    };
+
+    this.todos.set(id, updated);
+    return updated;
   }
 
   clear(): void {
