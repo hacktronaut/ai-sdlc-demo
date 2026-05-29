@@ -29,9 +29,9 @@ Phases are intentionally small so each can be completed and validated in one foc
 
 **Goal:** Support reading and editing an existing todo.
 
-- [ ] Implement `GET /todos/:id`
-- [ ] Implement `PUT /todos/:id`
-- [ ] Add tests for not-found and update flows
+- [x] Implement `GET /todos/:id`
+- [x] Implement `PUT /todos/:id`
+- [x] Add tests for not-found and update flows
 
 ---
 
