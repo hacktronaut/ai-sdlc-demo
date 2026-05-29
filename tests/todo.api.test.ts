@@ -34,4 +34,66 @@ describe("Todo API", () => {
     expect(createResponse.status).toBe(400);
     expect(createResponse.body.error.code).toBe("INVALID_REQUEST");
   });
+
+  describe("GET /todos/:id", () => {
+    it("returns a todo by id", async () => {
+      const created = await request(app).post("/todos").send({ title: "Detail test" });
+      const id = created.body.data.id;
+
+      const response = await request(app).get(`/todos/${id}`);
+      expect(response.status).toBe(200);
+      expect(response.body.data.id).toBe(id);
+      expect(response.body.data.title).toBe("Detail test");
+    });
+
+    it("returns TODO_NOT_FOUND for unknown id", async () => {
+      const response = await request(app).get("/todos/nonexistent-id");
+      expect(response.status).toBe(404);
+      expect(response.body.error.code).toBe("TODO_NOT_FOUND");
+    });
+  });
+
+  describe("PUT /todos/:id", () => {
+    it("updates a todo title and status", async () => {
+      const created = await request(app).post("/todos").send({ title: "Original title" });
+      const id = created.body.data.id;
+
+      const response = await request(app)
+        .put(`/todos/${id}`)
+        .send({ title: "Updated title", status: "done" });
+
+      expect(response.status).toBe(200);
+      expect(response.body.data.id).toBe(id);
+      expect(response.body.data.title).toBe("Updated title");
+      expect(response.body.data.status).toBe("done");
+    });
+
+    it("returns TODO_NOT_FOUND for unknown id", async () => {
+      const response = await request(app)
+        .put("/todos/nonexistent-id")
+        .send({ title: "Will fail" });
+      expect(response.status).toBe(404);
+      expect(response.body.error.code).toBe("TODO_NOT_FOUND");
+    });
+
+    it("rejects invalid update payload", async () => {
+      const created = await request(app).post("/todos").send({ title: "Validate me" });
+      const id = created.body.data.id;
+
+      const response = await request(app)
+        .put(`/todos/${id}`)
+        .send({ status: "invalid-status" });
+      expect(response.status).toBe(400);
+      expect(response.body.error.code).toBe("INVALID_REQUEST");
+    });
+
+    it("rejects update with empty title", async () => {
+      const created = await request(app).post("/todos").send({ title: "Has title" });
+      const id = created.body.data.id;
+
+      const response = await request(app).put(`/todos/${id}`).send({ title: "" });
+      expect(response.status).toBe(400);
+      expect(response.body.error.code).toBe("INVALID_REQUEST");
+    });
+  });
 });
