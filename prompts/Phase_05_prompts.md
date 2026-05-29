@@ -1,5 +1,8 @@
 # Phase 05 - Documentation and Release Notes
 
+Make sure you create a branch for implementation before making changes.
+
+
 ## Prompt 1
 
 Use `documentation-template` skill to generate or refresh `README.md` based on current implementation.

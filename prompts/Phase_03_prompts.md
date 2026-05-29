@@ -1,5 +1,7 @@
 # Phase 03 - Todo Detail and Update
 
+Make sure you create a branch for implementation before making changes.
+
 ## Prompt 1
 
 Read `specs/roadmap.md`, `specs/mission.md`, and `specs/tech-stack.md`.
